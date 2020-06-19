@@ -1,0 +1,41 @@
+﻿@model Movie
+@{
+    
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AboutThisMovie</title>
+    <link href="~/css/InfoPage.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 class="title">Info Page</h1>
+    <div class="AboutImage">
+        <a class ="text-center" href="@Model.Images[0]">
+            <img src=@Model.Images[0] >
+        </a>
+    </div>
+    <div class="MovieInfo">
+        <h5>Title:@Model.Title</h5>
+        <h5>Actors:@Model.Actors</h5>
+        <h5>Year:@Model.Year</h5>
+        <h5>Released:@Model.Released</h5>
+        <h5>Runtime:@Model.Runtime</h5>
+        <h5>Genre:@Model.Genre</h5> 
+        <h5>Director:@Model.Director</h5> 
+        <h5>Writer:@Model.Writer</h5> 
+        <h5>Plot:@Model.Plot</h5> 
+        <h5>Language:@Model.Language</h5> 
+        <h5>Country:@Model.Country</h5> 
+        <h5>Awards:@Model.Awards</h5> 
+        <h5>Metascore:@Model.Metascore</h5>
+        <h5>imdbRating:@Model.imdbrating</h5> 
+
+    </div>
+    
+</body>
+</html>

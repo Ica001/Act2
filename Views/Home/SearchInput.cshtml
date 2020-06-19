@@ -1,0 +1,89 @@
+﻿@model CainAbel.Models.InfoUserModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/Profile.css" rel="stylesheet" />
+    <link href="~/css/formpopup.css" rel="stylesheet" />
+    <link href="~/css/CardViewVideocss.css" rel="stylesheet" />
+    <link href="~/css/Star.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="profile-card">
+        <div class="img-container">
+            <img src="\@Model.Photo" style="width:100%" />
+            <div class="title">
+                <h2>Social Context:</h2>
+            </div>
+        </div>
+        <div class="main-container">
+            <p>Name:@Model.FullName</p>
+            <p>Email:@Model.Email</p>
+            <p>Adress:@Model.Adress</p>
+            <p>Phone: @Model.Phone</p>
+
+        </div>
+        <div class="decription">
+            <h3>  About Me:   </h3>
+            <p>@Model.AboutMe</p>
+
+  
+            </div>
+        </div>
+    <div class="wrapper">
+        <div class="cards_wrap">
+            @{ foreach (var element in ViewBag.listofRecords)
+                {
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <div class="card_top">
+
+                                <video controls="controls">
+                                    <source src="\@element.Video" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="card_bottom">
+
+                                <div class="card_info">
+                                    <p class="title">Type:@element.Type</p>
+
+                                </div>
+
+                                <form  asp-action="UpdateStrangerRating">
+                                    <div class="rating">
+
+                                        <input type="radio" id="star5-@element.Id" name="rating" value="5-@element.Id" /><label for="star5-@element.Id"> </label>
+                                        <input type="radio" id="star4-@element.Id" name="rating" value="4-@element.Id" /><label for="star4-@element.Id"></label>
+                                        <input type="radio" id="star3-@element.Id" name="rating" value="3-@element.Id" /><label for="star3-@element.Id"></label>
+                                        <input type="radio" id="star2-@element.Id" name="rating" value="2-@element.Id" /><label for="star2-@element.Id"></label>
+                                        <input type="radio" id="star1-@element.Id" name="rating" value="1-@element.Id" /><label for="star1-@element.Id"></label>
+
+                                    </div>
+                                    <input type="submit" value="vote" />
+
+                                </form>
+                               
+                               
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+            }
+        </div>
+    </div>
+
+   
+
+</body>
+</html>
+

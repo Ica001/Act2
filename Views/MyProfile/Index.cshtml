@@ -1,0 +1,162 @@
+﻿@model CainAbel.Models.InfoUserModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/Profile.css" rel="stylesheet" />
+    <link href="~/css/formpopup.css" rel="stylesheet" />
+    <link href="~/css/CardViewVideocss.css" rel="stylesheet" />
+    <link href="~/css/Star.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="profile-card">
+        <div class="img-container">
+            <img src=@Model.Photo style="width:100%" />
+            <div class="title">
+                <h2>Social Context:</h2>
+            </div>
+        </div>
+        <div class="main-container">
+            <p>Name:@Model.FullName</p>
+            <p>Email:@Model.Email</p>
+            <p>Adress:@Model.Adress</p>
+            <p>Phone: @Model.Phone</p>
+            
+        </div>
+        <div class="decription">
+            <h3>  About Me:   </h3>
+            <p>@Model.AboutMe</p>
+
+        </div>
+        <button class="open-button" onclick="openForm()">Edit</button>
+    </div>
+
+
+
+
+
+    <div class="form-popup" id="myForm">
+        <form asp-action="Upload" enctype="multipart/form-data" method="post" class="form-container">
+            <h3>Edit</h3>
+
+            <label asp-for="FullName" class="control-label"></label>
+            <input asp-for="FullName" class="form-control" />
+
+            <label asp-for="Adress" class="control-label"></label>
+            <input asp-for="Adress" class="form-control" />
+
+            <label asp-for="Phone" class="control-label"></label>
+            <input asp-for="Phone" class="form-control" />
+
+            <label asp-for="AboutMe" class="control-label"></label>
+            <textarea asp-for="AboutMe" rows="5" cols="30"></textarea>
+
+            <label asp-for="Photo" class="control-label"></label>
+            <input type="file" name="ifile" />
+
+
+            <button type="submit" class="btn">Edit My Profile</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+    <div class="wrapper">
+        <div class="cards_wrap">
+            @{ foreach (var element in ViewBag.listofRecords)
+                {
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <div class="card_top">
+
+                                <video controls="controls">
+                                    <source src="@element.Video" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="card_bottom">
+
+                                <div class="card_info">
+                                    <p class="title">Type:@element.Title</p>
+                                    <p class="title">Type:@element.Type</p>
+                                     <p> votes:(@element.Votes)</p>
+                                    <p>score:(@element.Ranking)</p>
+
+                                </div>
+
+                                
+                                <br />
+                                <form asp-action="DeleteRecord">
+                                    <button class="delete-btn" id="@element.Id" value="@element.Id" name="id">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                }
+
+            }
+        </div>
+    </div>
+
+    <button class="open-button" onclick="openFormad()">Upload</button>
+
+    <div class="form-popup" id="add" >
+        <form asp-action="UpdateVideo" enctype="multipart/form-data" method="post" class="form-container">
+
+            <input type="file" name="file" />
+            <label>Enter Title:</label>
+            <input type="text" name="title" required />
+            <label>Chose Type:</label>
+            <select id="cars" name="type" required>
+                <option value="Comedy">Comedy</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Horror">Horror</option>
+                <option value="Western">Western</option>
+                <option value="Animation">Animation</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Sport">Sport</option>
+                <option value="Musical">Musical</option>
+                <option value="Drama">Drama</option>
+                <option value="Triller">Triller</option>
+
+            </select>
+
+            <button type="submit" class="btn">Upload</button>
+            <button type="button" class="btn cancel" onclick="closeFormad()">Close</button>
+        </form>
+    </div>
+
+
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+        function openFormad() {
+            document.getElementById("add").style.display = "block";
+        }
+
+        function closeFormad() {
+            document.getElementById("add").style.display = "none";
+        }
+
+
+
+    </script>
+
+
+</body>
+    </html>
+

@@ -1,0 +1,12 @@
+﻿body {
+    background-color:aqua;
+}
+img {
+    border-radius: 4px;
+    padding: 2px;
+    width: 500px;
+}
+
+.MovieInfo {
+    font-family: "Lucida Console", Courier, monospace;
+}
